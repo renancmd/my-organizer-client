@@ -11,7 +11,7 @@ function Navbar() {
                     <DropdownTheme />
                 </li>
                 <li>
-                    <TextLink name="Olá" href="#" />
+                    <TextLink name="Olá" href="/profile" />
                 </li>
             </ul>
         </nav>
