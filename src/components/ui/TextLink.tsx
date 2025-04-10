@@ -1,11 +1,12 @@
 import styles from "@/styles/ui/TextLink.module.scss";
 import { TextLinkProps } from "@/types/globals";
+import Link from "next/link";
 
 function TextLink({ name, href }: TextLinkProps) {
     return (
-      <a className={styles.textLink} href={href}>
+      <Link className={styles.textLink} href={href}>
         {name}
-      </a>
+      </Link>
     );
   }
 
