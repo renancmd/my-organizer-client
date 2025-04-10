@@ -21,4 +21,14 @@ declare global {
         name: string;
         onclick?: (e: any) => void;
     }
+
+    interface ModalProps {
+        isOpen: boolean;
+        onClose?: () => void;
+        question: string;
+        confirmText?: string;
+        cancelText?: string;
+        onConfirm?: () => void;
+        onCancel?: () => void;
+      }
 }
