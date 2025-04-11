@@ -6,11 +6,14 @@ import { Modal } from "@/components/ui/Modal";
 import ProfileImage from "@/components/ui/ProfileImage";
 import TextLink from "@/components/ui/TextLink";
 import styles from "@/styles/pages/Profile.module.scss";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 function Profile() {
   const [isModalOpen, setIsModalOpen] = useState<string>("");
   const [editUserData, setEditUserData] = useState<boolean>(true);
+
+  const router = useRouter();
 
   return (
     <div>
@@ -54,7 +57,7 @@ function Profile() {
               }}
             />
           )}
-          <Button name="Alterar senha" />
+          <Button name="Alterar senha" onclick={() => router.push("/change-password")} />
           <Button name="Sair" />
           <Button
             name="Excluir minha conta"
