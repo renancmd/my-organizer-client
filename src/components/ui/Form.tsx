@@ -1,3 +1,4 @@
+"use client";
 import styles from "@/styles/ui/Form.module.scss";
 
 function Form({ children }: { children: React.ReactNode }): React.ReactNode {
