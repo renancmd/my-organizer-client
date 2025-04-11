@@ -5,13 +5,24 @@ import Input from "@/components/ui/Input";
 import { Modal } from "@/components/ui/Modal";
 import ProfileImage from "@/components/ui/ProfileImage";
 import TextLink from "@/components/ui/TextLink";
+import { showUserData } from "@/functions/users/show-data/show-data";
 import styles from "@/styles/pages/Profile.module.scss";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Profile() {
   const [isModalOpen, setIsModalOpen] = useState<string>("");
   const [editUserData, setEditUserData] = useState<boolean>(true);
+
+  const [email, setEmail] = useState<string>("");
+  const [name, setName] = useState<string>("");
+
+  useEffect(() => {
+    showUserData().then(data => {
+      setEmail(data.email);
+      setName(data.name);
+    })
+  }, []);
 
   const router = useRouter();
 
@@ -34,12 +45,14 @@ function Profile() {
             label="Email"
             placeholder="Email"
             disable={editUserData}
+            value={email}
           />
           <Input
             type="text"
             showLabel={true}
             label="Nome"
             placeholder="Nome"
+            value={name}
             disable={editUserData}
           />
           {editUserData ? (

@@ -6,7 +6,7 @@ function ProfileImage() {
     <div className={styles.profileImageWrapper}>
       <div className={styles.imageContainer}>
         <img
-          src={"/default-user.png"}
+          src={"#"}
           alt="User"
           className={styles.profileImg}
         />
