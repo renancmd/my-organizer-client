@@ -1,18 +1,15 @@
 import { loginUser } from "@/services/api/user/user";
 
 function login(email: string, password: string) {
-    const data = {
-        email,
-        password
-    };
-        loginUser(data)
+    loginUser({ email, password })
         .then(response => {
-                localStorage.setItem('token', response);
-                window.location.href = '/';
-            })
-            .catch(error => {
-                console.log(error);
-            })
+            if (response === "Login failed") {
+                return false;
+            } else {
+                localStorage.setItem("token", response);
+                window.location.href = "/";
+            }
+        });
 }
 
-export {login};
+export  {login };

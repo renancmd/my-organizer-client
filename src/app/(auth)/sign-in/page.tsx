@@ -12,6 +12,8 @@ function signIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const [error, setError] = useState<boolean>(true);
+
   return (
     <div className={styles.signIn}>
       <Logo />
@@ -25,6 +27,8 @@ function signIn() {
             type="text"
             value={email}
             onchange={(e) => setEmail(e.target.value)}
+            error={!error}
+            errorMessage="Email ou senha incorretos"
           />
           <Input
             placeholder="Sua senha..."
@@ -33,10 +37,15 @@ function signIn() {
             type="password"
             value={password}
             onchange={(e) => setPassword(e.target.value)}
+            error={!error}
+            errorMessage="Email ou senha incorretos"
           />
           <TextLink name="Ainda não possui uma conta?" href="/sign-up" />
           <div className="center">
-            <Button name="Login" onclick={() => login(email, password)} />
+            <Button name="Login" onclick={() => {
+              const result: boolean | any = login(email, password);
+              !result && setError(false);
+            }} />
           </div>
         </Form>
       </div>
