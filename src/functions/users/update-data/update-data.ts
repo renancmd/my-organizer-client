@@ -1,16 +1,20 @@
 import { updateUser } from "@/services/api/user/user";
 import { logout } from "../logout/logout";
+import { isValidEmail, isValidName } from "@/functions/generics/validations";
 
 function updateUserData(email?: string, name?: string) {
-  const data = {
-    email: email,
-    name: name,
-  };
-  
-  updateUser(data).then((token) => {
-    console.log(token);
+  const emailValid = email ? isValidEmail(email) : false;
+  const nameValid = name ? isValidName(name) : false;
+
+  if (!emailValid || !nameValid) {
+    return {
+      email: emailValid,
+      name: nameValid,
+    }
+  } else {
+    updateUser({ email, name });
     logout();
-  });
+  }
   
 }
 

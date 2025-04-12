@@ -19,6 +19,11 @@ function Profile() {
   const [email, setEmail] = useState<string>("");
   const [name, setName] = useState<string>("");
 
+  const [errors, setErrors] = useState({
+    email: true,
+    name: true
+  });
+
   useEffect(() => {
     showUserData().then(data => {
       setEmail(data.email);
@@ -49,6 +54,8 @@ function Profile() {
             disable={editUserData}
             value={email}
             onchange={(e) => setEmail(e.target.value)}
+            error={!errors.email}
+            errorMessage="Email Inválido"
           />
           <Input
             type="text"
@@ -58,6 +65,8 @@ function Profile() {
             value={name}
             onchange={(e) => setName(e.target.value)}
             disable={editUserData}
+            error={!errors.name}
+            errorMessage="Nome Inválido"
           />
           {editUserData ? (
             <Button
@@ -70,8 +79,10 @@ function Profile() {
             <Button
               name="Salvar"
               onclick={(e) => {
-                setEditUserData(true);
-                updateUserData(email, name);
+                const result = updateUserData(email, name);
+                if (result) {
+                  setErrors(result);
+                }
               }}
             />
           )}
