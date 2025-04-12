@@ -11,6 +11,10 @@ import { useState } from "react";
 function ChangePassword() {
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const [error, setError] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
     return (
         <div className={styles.signIn}>
@@ -26,6 +30,8 @@ function ChangePassword() {
                 type="password"
                 value={oldPassword}
                 onchange={(e) => setOldPassword(e.target.value)}
+                error={error}
+                errorMessage={errorMessage}
               />
               <Input
                 placeholder="Crie uma nova senha"
@@ -34,15 +40,27 @@ function ChangePassword() {
                 type="password"
                 value={newPassword}
                 onchange={(e) => setNewPassword(e.target.value)}
+                error={error}
+                errorMessage={errorMessage}
               />
               <Input
                 placeholder="Confime a nova senha"
                 showLabel={true}
                 label="Repita a nova senha"
                 type="password"
+                value={confirmPassword}
+                onchange={(e) => setConfirmPassword(e.target.value)}
+                error={error}
+                errorMessage={errorMessage}
               />
               <div className="center">
-                <Button name="Salvar" onclick={() => changePassword(oldPassword, newPassword)} />
+                <Button name="Salvar" onclick={() => {
+                  const result = changePassword(oldPassword, newPassword, confirmPassword);
+                  if (result?.error) {
+                    setError(result.error);
+                    setErrorMessage(result.errorMessage);
+                  }
+                }} />
               </div>
             </Form>
           </div>
