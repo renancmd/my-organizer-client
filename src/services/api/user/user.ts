@@ -1,5 +1,11 @@
 import api from '../api';
 
+interface RegisterData {
+    email: string;
+    name: string;
+    password: string;
+}
+
 interface LoginData {
     email: string;
     password: string;
@@ -13,6 +19,12 @@ interface ShowData {
 interface UpdateData {
     email?: string | null;
     name?: string | null;
+}
+
+// Register
+export async function registerUser(data: RegisterData): Promise<string> {
+    const response = await api.post("/auth/register", data);
+    return response.data;
 }
 
 // Login
