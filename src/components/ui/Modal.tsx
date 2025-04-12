@@ -1,6 +1,9 @@
 import { IoIosClose } from "react-icons/io";
 import styles from "../../styles/ui/Modal.module.scss";
 import Button from "./Button";
+import Input from "./Input";
+import { useState } from "react";
+import { deleteUserData } from "@/functions/users/delete/delete";
 
 export const Modal = ({
   isOpen,
@@ -8,10 +11,11 @@ export const Modal = ({
   question,
   confirmText = "Confirm",
   cancelText = "Cancel",
-  onConfirm,
   onCancel,
 }: ModalProps) => {
   if (!isOpen) return null;
+
+  const [password, setPassword] = useState<string>("");
 
   return (
     <div className={styles.overlay}>
@@ -22,13 +26,21 @@ export const Modal = ({
 
         <div className={styles.content}>
           <p className={styles.question}>{question}</p>
+          <Input
+            type="password"
+            label="Senha"
+            showLabel={false}
+            placeholder="Senha"
+            value={password}
+            onchange={(e) => setPassword(e.target.value)}
+          />
         </div>
 
         <div className={styles.actions}>
           <button onClick={onCancel} className={styles.cancelButton}>
             {cancelText}
           </button>
-          <button onClick={onConfirm} className={styles.confirmButton}>
+          <button onClick={() => deleteUserData(password)} className={styles.confirmButton}>
             {confirmText}
           </button>
         </div>

@@ -26,6 +26,10 @@ interface ChangePassword {
     newPassword: string;
 }
 
+interface DeleteData {
+    password: string;
+}
+
 // Register
 export async function registerUser(data: RegisterData): Promise<string> {
     const response = await api.post("/auth/register", data);
@@ -65,6 +69,17 @@ export async function changeUserPassword(data: ChangePassword): Promise<string> 
         headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
+    });
+    return response.data;
+}
+
+// Delete user
+export async function deleteUser(password: DeleteData): Promise<string> {
+    const response = await api.delete("/user/delete", {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        data: password,
     });
     return response.data;
 }

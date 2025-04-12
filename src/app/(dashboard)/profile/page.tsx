@@ -85,12 +85,11 @@ function Profile() {
           />
           <Modal
             onClose={() => setIsModalOpen("")}
-            question="Tem certeza que deseja excluir sua conta?"
+            question="Tem certeza que deseja excluir sua conta? Confirme sua senha para realizar a exclusão."
             isOpen={isModalOpen === "remove-account"}
             cancelText="Cancelar"
             confirmText="Excluir"
             onCancel={() => setIsModalOpen("")}
-            onConfirm={() => setIsModalOpen("")}
           />
         </Form>
       </div>
