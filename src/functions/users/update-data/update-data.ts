@@ -1,4 +1,5 @@
 import { updateUser } from "@/services/api/user/user";
+import { logout } from "../logout/logout";
 
 function updateUserData(email?: string, name?: string) {
   const data = {
@@ -8,8 +9,7 @@ function updateUserData(email?: string, name?: string) {
   
   updateUser(data).then((token) => {
     console.log(token);
-    localStorage.removeItem("token");
-    window.location.href = "/sign-in";
+    logout();
   });
   
 }

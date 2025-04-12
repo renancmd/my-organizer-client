@@ -5,6 +5,7 @@ import Input from "@/components/ui/Input";
 import { Modal } from "@/components/ui/Modal";
 import ProfileImage from "@/components/ui/ProfileImage";
 import TextLink from "@/components/ui/TextLink";
+import { logout } from "@/functions/users/logout/logout";
 import { showUserData } from "@/functions/users/show-data/show-data";
 import { updateUserData } from "@/functions/users/update-data/update-data";
 import styles from "@/styles/pages/Profile.module.scss";
@@ -75,7 +76,7 @@ function Profile() {
             />
           )}
           <Button name="Alterar senha" onclick={() => router.push("/change-password")} />
-          <Button name="Sair" />
+          <Button name="Sair" onclick={() => logout()} />
           <Button
             name="Excluir minha conta"
             onclick={(e) => {
