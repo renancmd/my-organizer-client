@@ -7,9 +7,13 @@ import Task from "@/modules/tasks/components/Task";
 import Input from "@/components/ui/Input";
 import { useState } from "react";
 import ModalTask from "@/modules/tasks/components/ModalTask";
+import Button from "@/components/ui/Button";
+import { createTask } from "@/functions/tasks/create-task";
 
 export default function Home() {
   const [openModal, setOpenModal] = useState<boolean>(false);
+
+  const [taskName, setTaskName] = useState<string>("");
 
   return (
     <div>
@@ -21,11 +25,19 @@ export default function Home() {
           <TabButton title="Atrasado" />
           <TabButton title="Completo" />
         </div>
+        <div className={styles.containerInput}>
         <Input
           type="text"
           showLabel={false}
           placeholder="Adicione uma tarefa"
+          value={taskName}
+          onchange={(e) => setTaskName(e.target.value)}
         />
+        <Button name="Criar" onclick={() => {
+          createTask(taskName)
+          setTaskName("");
+        }} />
+        </div>
         <Task
           title="Hello, world!"
           date="11-08-2004"
