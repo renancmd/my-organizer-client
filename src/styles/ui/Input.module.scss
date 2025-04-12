@@ -1,40 +1,50 @@
 .inputContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-    transition: all 0.3s ease;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.inputLabel {
+  color: var(--text-color);
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+}
+
+.inputField {
+  padding: 0.6rem 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+
+  &:focus {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    outline: none;
   }
-  
-  .inputLabel {
-    color: var(--text-color);
-    font-weight: 500;
-    font-size: 0.95rem;
+
+  &::placeholder {
+    color: #999;
     transition: color 0.3s ease;
   }
-  
-  .inputField {
-    padding: 0.6rem 1rem;
-    border: 2px solid var(--border-color);
-    border-radius: 8px;
-    background-color: var(--background-color);
-    color: var(--text-color);
-    font-size: 1rem;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
-  
-    &:focus {
-      border-color: var(--secondary-color);
-      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-      outline: none;
-    }
-  
-    &::placeholder {
-      color: #999;
-      transition: color 0.3s ease;
-    }
-  
-    &:hover {
-      border-color: var(--secondary-color);
-    }
+
+  &:hover {
+    border-color: var(--secondary-color);
   }
-  
+}
+
+.error {
+  border-color: #e63946 !important; // vermelho ou a cor que você quiser
+}
+
+.errorMessage {
+  color: #e63946;
+  font-size: 0.85rem;
+  margin-top: -0.2rem;
+  margin-left: 0.2rem;
+}

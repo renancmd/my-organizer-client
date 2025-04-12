@@ -10,6 +10,8 @@ declare global {
         value?: string;
         disable?: boolean;
         onchange?: (e: any) => void;
+        error?: boolean;
+        errorMessage?: string;
     }
 
     interface TextLinkProps {
