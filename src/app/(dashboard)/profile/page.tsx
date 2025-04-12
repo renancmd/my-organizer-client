@@ -6,6 +6,7 @@ import { Modal } from "@/components/ui/Modal";
 import ProfileImage from "@/components/ui/ProfileImage";
 import TextLink from "@/components/ui/TextLink";
 import { showUserData } from "@/functions/users/show-data/show-data";
+import { updateUserData } from "@/functions/users/update-data/update-data";
 import styles from "@/styles/pages/Profile.module.scss";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -46,6 +47,7 @@ function Profile() {
             placeholder="Email"
             disable={editUserData}
             value={email}
+            onchange={(e) => setEmail(e.target.value)}
           />
           <Input
             type="text"
@@ -53,6 +55,7 @@ function Profile() {
             label="Nome"
             placeholder="Nome"
             value={name}
+            onchange={(e) => setName(e.target.value)}
             disable={editUserData}
           />
           {editUserData ? (
@@ -67,6 +70,7 @@ function Profile() {
               name="Salvar"
               onclick={(e) => {
                 setEditUserData(true);
+                updateUserData(email, name);
               }}
             />
           )}

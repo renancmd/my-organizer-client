@@ -6,8 +6,13 @@ interface LoginData {
 }
 
 interface ShowData {
-    email: string;
+    email: string
     name: string;
+}
+
+interface UpdateData {
+    email?: string | null;
+    name?: string | null;
 }
 
 // Login
@@ -24,4 +29,15 @@ export async function getUserData(): Promise<ShowData> {
         },
     });
     return response.data[0];
+}
+
+// Update user data
+export async function updateUser(data: UpdateData): Promise<string> {
+    const response = await api.put("/user/update", data, {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+    });
+
+    return response.data;
 }
