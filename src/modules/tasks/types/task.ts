@@ -9,6 +9,7 @@ interface TabButtonProps {
 }
 
 interface TaskProps {
+  id: string;
   name: string;
   description?: string;
   date: string;
