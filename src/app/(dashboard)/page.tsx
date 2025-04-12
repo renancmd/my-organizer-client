@@ -46,8 +46,10 @@ export default function Home() {
           onchange={(e) => setTaskName(e.target.value)}
         />
         <Button name="Criar" onclick={() => {
-          createTask(taskName)
-          setTaskName("");
+          if (taskName.trim() !== "") {
+            createTask(taskName);
+            setTaskName("");
+          }
         }} />
         </div>
         {
