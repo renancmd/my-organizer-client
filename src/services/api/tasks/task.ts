@@ -21,3 +21,8 @@ export async function getAll(): Promise<string> {
     });
     return response.data;
 }
+
+export async function update(id: string, task: TaskCreate): Promise<string> {
+    const response = await api.put(`/tasks/${id}`, task);
+    return response.data;
+}

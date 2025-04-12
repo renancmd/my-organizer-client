@@ -1,14 +1,14 @@
 "use client";
-import { useState } from "react";
 import styles from "../styles/Datepicker.module.scss";
+import { currentDate } from "@/functions/generics/currentDate";
 
-function Datepicker({ date }: DatepickerProps) {
-
+function Datepicker({ date, onchange }: DatepickerProps) {
   return (
     <div className={styles.datepicker}>
       <input
         type="date"
-        defaultValue={date}
+        value={date ?? ""}
+        onChange={onchange}
         className={styles.datepickerInput}
       />
 

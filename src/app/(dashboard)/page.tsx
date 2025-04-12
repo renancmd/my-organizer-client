@@ -67,6 +67,7 @@ export default function Home() {
         }
         {openModal && selectedTask && (
           <ModalTask
+            id={selectedTask.id}
             title={selectedTask.name}
             description={selectedTask.description}
             date={selectedTask.date}
