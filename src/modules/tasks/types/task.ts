@@ -9,9 +9,10 @@ interface TabButtonProps {
 }
 
 interface TaskProps {
-  title: string;
+  name: string;
   description?: string;
   date: string;
+  done: boolean;
   onclick: () => void;
 }
 
