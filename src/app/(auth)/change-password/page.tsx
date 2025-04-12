@@ -1,11 +1,17 @@
+"use client";
 import Button from "@/components/ui/Button";
 import Form from "@/components/ui/Form";
 import Input from "@/components/ui/Input";
 import Logo from "@/components/ui/Logo";
 import TextLink from "@/components/ui/TextLink";
+import { changePassword } from "@/functions/users/password/password";
 import styles from "@/styles/pages/ChangePassword.module.scss";
+import { useState } from "react";
 
 function ChangePassword() {
+  const [oldPassword, setOldPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+
     return (
         <div className={styles.signIn}>
           <Logo />
@@ -18,12 +24,16 @@ function ChangePassword() {
                 showLabel={true}
                 label="Senha atual"
                 type="password"
+                value={oldPassword}
+                onchange={(e) => setOldPassword(e.target.value)}
               />
               <Input
                 placeholder="Crie uma nova senha"
                 showLabel={true}
                 label="Nova senha"
                 type="password"
+                value={newPassword}
+                onchange={(e) => setNewPassword(e.target.value)}
               />
               <Input
                 placeholder="Confime a nova senha"
@@ -32,7 +42,7 @@ function ChangePassword() {
                 type="password"
               />
               <div className="center">
-                <Button name="Salvar" />
+                <Button name="Salvar" onclick={() => changePassword(oldPassword, newPassword)} />
               </div>
             </Form>
           </div>

@@ -21,6 +21,11 @@ interface UpdateData {
     name?: string | null;
 }
 
+interface ChangePassword {
+    oldPassword: string;
+    newPassword: string;
+}
+
 // Register
 export async function registerUser(data: RegisterData): Promise<string> {
     const response = await api.post("/auth/register", data);
@@ -51,5 +56,15 @@ export async function updateUser(data: UpdateData): Promise<string> {
         },
     });
 
+    return response.data;
+}
+
+// Change password
+export async function changeUserPassword(data: ChangePassword): Promise<string> {
+    const response = await api.put("/user/password", data, {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+    });
     return response.data;
 }
