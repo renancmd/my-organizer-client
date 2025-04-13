@@ -16,6 +16,7 @@ interface TaskProps {
   date: string;
   done: boolean;
   onclick: () => void;
+  oncomplete?: (e: any) => void;
   ondelete?: (e: any) => void;
 }
 

@@ -1,7 +1,7 @@
 import { create } from "@/services/api/tasks/task";
 import { currentDate } from "../generics/currentDate";
 
-function createTask(name: string) {
+async function createTask(name: string) {
     const task = {
         name: name,
         description: "",

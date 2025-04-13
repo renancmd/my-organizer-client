@@ -22,12 +22,20 @@ export async function getAll(): Promise<string> {
     return response.data;
 }
 
+// Update task
 export async function update(id: string, task: TaskCreate): Promise<string> {
     const response = await api.put(`/tasks/${id}`, task);
     return response.data;
 }
 
+// Remove task
 export async function remove(id: string): Promise<string> {
     const response = await api.delete(`/tasks/${id}`);
+    return response.data;
+}
+
+// Complete task
+export async function complete(id: string, done: boolean): Promise<string> {
+    const response = await api.put(`/tasks/${id}/done`, {done});
     return response.data;
 }

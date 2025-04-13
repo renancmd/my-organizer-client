@@ -12,6 +12,7 @@ import { createTask } from "@/functions/tasks/create-task";
 import { getTasks } from "@/functions/tasks/get-task";
 import { filterTasks } from "@/functions/tasks/filter-task";
 import { deleteTask } from "@/functions/tasks/delete-task";
+import { completeTask } from "@/functions/tasks/complete-task";
 
 export default function Home() {
   const [openModal, setOpenModal] = useState<boolean>(false);
@@ -74,6 +75,11 @@ export default function Home() {
             onclick={() => {
               setSelectedTask(task);
               setOpenModal(true);
+            }}
+            oncomplete={async (e) => {
+              e.stopPropagation();
+              await completeTask(task.id, true);
+              await loadTasks();
             }}
             ondelete={async (e) => {
               e.stopPropagation();

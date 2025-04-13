@@ -8,17 +8,17 @@ export const filterTasks = (tasks: any[], filter: string) => {
   
       switch (filter) {
         case "no-date":
-          return !taskDate;
+          return !taskDate && !task.done;
         case "today":
-          return taskDate?.getTime() === today.getTime();
+          return taskDate?.getTime() === today.getTime() && !task.done;
         case "tomorrow":
-          return taskDate?.getTime() === tomorrow.getTime();
+          return taskDate?.getTime() === tomorrow.getTime() && !task.done;
         case "overdue":
           return taskDate && taskDate < today && !task.done;
         case "completed":
           return task.done;
         default:
-          return true;
+          return !task.done;
       }
     });
   };
