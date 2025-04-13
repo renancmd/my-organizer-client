@@ -12,20 +12,24 @@
 }
 
 .dark {
-  --primary-color: #000;
+  --primary-color: #121212; /* Preto profundo, mas menos puro */
   --secondary-color: #06b6d4;
-  --text-color: #fff;
+  --text-color: #d4d4d4; /* Branco suavizado, cinza bem claro */
   --text-color-secondary: #000;
   --link-hover-color: #1e90ff;
-  --background-color: #1c1b22;
-  --button-background-color: #fff;
-  --border-color: #fff;
+  --background-color: #25242b; /* Fundo com leve variação acinzentada */
+  --button-background-color: #d4d4d4; /* Branco menos intenso para botões */
+  --border-color: #d4d4d4; /* Borda com tom cinza claro */
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+body {
+  background-color: var(--background-color);
 }
 
 .w-100 {

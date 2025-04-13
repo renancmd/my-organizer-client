@@ -22,20 +22,24 @@ function ModalTask({ id, title, description, date, onclick }: ModalTaskProps) {
         <input
           type="text"
           value={taskName}
-          onChange={e => setTaskName(e.target.value)}
+          onChange={(e) => setTaskName(e.target.value)}
           className={styles.modalTitle}
         />
 
         <h3 className={styles.modalSubtitle}>Descrição</h3>
-        
+
         <textarea
           placeholder="Adicione uma descrição aqui"
           rows={18}
           className={styles.modalDescription}
           value={taskDescription}
-          onChange={e => setTaskDescription(e.target.value)}
+          onChange={(e) => setTaskDescription(e.target.value)}
         ></textarea>
 
+        <Datepicker
+          date={taskDate}
+          onchange={(e) => setTaskDate(e.target.value)}
+        />
         <div className={styles.modalButton}>
           <Button
             name="Salvar"
@@ -50,8 +54,6 @@ function ModalTask({ id, title, description, date, onclick }: ModalTaskProps) {
             }}
           />
         </div>
-
-        <Datepicker date={taskDate} onchange={e => setTaskDate(e.target.value)} />
       </div>
     </div>
   );
