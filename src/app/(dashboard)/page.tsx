@@ -10,64 +10,72 @@ import ModalTask from "@/modules/tasks/components/ModalTask";
 import Button from "@/components/ui/Button";
 import { createTask } from "@/functions/tasks/create-task";
 import { getTasks } from "@/functions/tasks/get-task";
+import { filterTasks } from "@/functions/tasks/filter-task";
 
 export default function Home() {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [taskName, setTaskName] = useState<string>("");
   const [task, setTask] = useState<Array<Object>>([]);
   const [selectedTask, setSelectedTask] = useState<any>(null);
+  const [filter, setFilter] = useState<string>("Todos");
+
+  const loadTasks = async () => {
+    const data = await getTasks();
+    if (Array.isArray(data)) {
+      setTask(data);
+    } else {
+      console.error("Invalid data format:", data);
+    }
+  };
 
   useEffect(() => {
-    getTasks().then((data) => {
-      if (Array.isArray(data)) {
-        setTask(data);
-      } else {
-        console.error("Invalid data format:", data);
-      }
-    });
+    loadTasks();
   }, []);
 
   return (
     <div>
       <ContainerToDo>
         <div className={`center flex ${styles.containerTab}`}>
-          <TabButton title="Sem data" />
-          <TabButton title="Hoje" />
-          <TabButton title="Amanhã" />
-          <TabButton title="Atrasado" />
-          <TabButton title="Completo" />
+          <TabButton title="Todos" onclick={() => setFilter("all")} />
+          <TabButton title="Sem data" onclick={() => setFilter("no-date")} />
+          <TabButton title="Hoje" onclick={() => setFilter("today")} />
+          <TabButton title="Amanhã" onclick={() => setFilter("tomorrow")} />
+          <TabButton title="Atrasado" onclick={() => setFilter("overdue")} />
+          <TabButton title="Completo" onclick={() => setFilter("completed")} />
         </div>
         <div className={styles.containerInput}>
-        <Input
-          type="text"
-          showLabel={false}
-          placeholder="Adicione uma tarefa"
-          value={taskName}
-          onchange={(e) => setTaskName(e.target.value)}
-        />
-        <Button name="Criar" onclick={() => {
-          if (taskName.trim() !== "") {
-            createTask(taskName);
-            setTaskName("");
-          }
-        }} />
+          <Input
+            type="text"
+            showLabel={false}
+            placeholder="Adicione uma tarefa"
+            value={taskName}
+            onchange={(e) => setTaskName(e.target.value)}
+          />
+          <Button
+            name="Criar"
+            onclick={async () => {
+              if (taskName.trim() !== "") {
+                await createTask(taskName);
+                setTaskName("");
+                await loadTasks();
+              }
+            }}
+          />
         </div>
-        {
-          task.map((task: any) => (
-            <Task
-              key={task.id}
-              id={task.id}
-              name={task.name}
-              description={task.description}
-              date={task.date}
-              done={task.done}
-              onclick={() => {
-                setSelectedTask(task);
-                setOpenModal(true);
-              }}
-            />
-          ))
-        }
+        {filterTasks(task, filter).map((task: any) => (
+          <Task
+            key={task.id}
+            id={task.id}
+            name={task.name}
+            description={task.description}
+            date={task.date}
+            done={task.done}
+            onclick={() => {
+              setSelectedTask(task);
+              setOpenModal(true);
+            }}
+          />
+        ))}
         {openModal && selectedTask && (
           <ModalTask
             id={selectedTask.id}

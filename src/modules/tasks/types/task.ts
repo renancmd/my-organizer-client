@@ -6,6 +6,7 @@ interface ContainerToDoProps {
 
 interface TabButtonProps {
   title: string;
+  onclick?: () => void;
 }
 
 interface TaskProps {
