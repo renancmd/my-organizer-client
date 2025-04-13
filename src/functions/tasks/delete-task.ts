@@ -1,7 +1,7 @@
 import { remove } from "@/services/api/tasks/task";
 
-function deleteTask(id: string) {
-  remove(id);
+async function deleteTask(id: string) {
+  await remove(id);
 }
 
 export { deleteTask };

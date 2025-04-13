@@ -3,7 +3,7 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import styles from "../styles/Task.module.scss";
 import { deleteTask } from "@/functions/tasks/delete-task";
 
-function Task ({id, name, description, date, onclick, done} : TaskProps) {
+function Task ({id, name, description, date, onclick, ondelete, done} : TaskProps) {
     return (
         <div className={done == false ? styles.task : styles.hi} onClick={onclick}>
             <div className={styles.taskContent}>
@@ -14,7 +14,7 @@ function Task ({id, name, description, date, onclick, done} : TaskProps) {
                 <button className={`${styles.taskIcon} ${styles.check}`} >
                     <FaCheck />
                 </button>
-                <button className={`${styles.taskIcon} ${styles.delete}`} onClick={() => deleteTask(id)} >
+                <button className={`${styles.taskIcon} ${styles.delete}`} onClick={ondelete} >
                     <FaRegTrashAlt />
                 </button>
             </div>

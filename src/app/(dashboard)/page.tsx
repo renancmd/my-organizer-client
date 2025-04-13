@@ -11,6 +11,7 @@ import Button from "@/components/ui/Button";
 import { createTask } from "@/functions/tasks/create-task";
 import { getTasks } from "@/functions/tasks/get-task";
 import { filterTasks } from "@/functions/tasks/filter-task";
+import { deleteTask } from "@/functions/tasks/delete-task";
 
 export default function Home() {
   const [openModal, setOpenModal] = useState<boolean>(false);
@@ -73,6 +74,11 @@ export default function Home() {
             onclick={() => {
               setSelectedTask(task);
               setOpenModal(true);
+            }}
+            ondelete={async (e) => {
+              e.stopPropagation();
+              await deleteTask(task.id);
+              await loadTasks();
             }}
           />
         ))}

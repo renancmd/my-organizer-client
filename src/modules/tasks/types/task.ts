@@ -16,6 +16,7 @@ interface TaskProps {
   date: string;
   done: boolean;
   onclick: () => void;
+  ondelete?: (e: any) => void;
 }
 
 interface ModalTaskProps {
