@@ -94,9 +94,10 @@ export default function Home() {
             title={selectedTask.name}
             description={selectedTask.description}
             date={selectedTask.date}
-            onclick={() => {
+            onclick={async () => {
               setOpenModal(false);
               setSelectedTask(null);
+              await loadTasks();
             }}
           />
         )}

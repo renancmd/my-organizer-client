@@ -39,12 +39,14 @@ function ModalTask({ id, title, description, date, onclick }: ModalTaskProps) {
         <div className={styles.modalButton}>
           <Button
             name="Salvar"
-            onclick={() => {
+            onclick={async () => {
               updateTask(id, {
                 name: taskName,
                 description: taskDescription,
                 date: taskDate,
               });
+              await getTasks();
+              onclick?.();
             }}
           />
         </div>
