@@ -15,16 +15,16 @@ import { deleteTask } from "@/functions/tasks/delete-task";
 import { completeTask } from "@/functions/tasks/complete-task";
 
 export default function Home() {
-  const [openModal, setOpenModal] = useState<boolean>(false);
-  const [taskName, setTaskName] = useState<string>("");
-  const [task, setTask] = useState<Array<Object>>([]);
+  const [openModal, setOpenModal] = useState(false);
+  const [taskName, setTaskName] = useState("");
+  const [task, setTask] = useState<Array<any>>([]);
   const [selectedTask, setSelectedTask] = useState<any>(null);
-  const [filter, setFilter] = useState<string>("Todos");
+  const [filter, setFilter] = useState("all");
 
   const loadTasks = async () => {
     const data = await getTasks();
     if (Array.isArray(data)) {
-      setTask(data);
+      setTask([...data]); // Força nova referência para atualizar corretamente
     } else {
       console.error("Invalid data format:", data);
     }
@@ -33,6 +33,14 @@ export default function Home() {
   useEffect(() => {
     loadTasks();
   }, []);
+
+  const handleCreateTask = async () => {
+    if (taskName.trim() === "") return;
+
+    await createTask(taskName);
+    setTaskName("");
+    await loadTasks();
+  };
 
   return (
     <div>
@@ -45,6 +53,7 @@ export default function Home() {
           <TabButton title="Atrasado" onclick={() => setFilter("overdue")} />
           <TabButton title="Completo" onclick={() => setFilter("completed")} />
         </div>
+
         <div className={styles.containerInput}>
           <Input
             type="text"
@@ -53,17 +62,9 @@ export default function Home() {
             value={taskName}
             onchange={(e) => setTaskName(e.target.value)}
           />
-          <Button
-            name="Criar"
-            onclick={async () => {
-              if (taskName.trim() !== "") {
-                await createTask(taskName);
-                setTaskName("");
-                await loadTasks();
-              }
-            }}
-          />
+          <Button name="Criar" onclick={handleCreateTask} />
         </div>
+
         {filterTasks(task, filter).map((task: any) => (
           <Task
             key={task.id}
@@ -88,6 +89,7 @@ export default function Home() {
             }}
           />
         ))}
+
         {openModal && selectedTask && (
           <ModalTask
             id={selectedTask.id}

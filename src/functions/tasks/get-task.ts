@@ -1,7 +1,7 @@
 import { getAll } from "@/services/api/tasks/task";
 
-function getTasks() {
-    const tasks = getAll();
+async function getTasks() {
+    const tasks = await getAll();
     return tasks;
 }    
 

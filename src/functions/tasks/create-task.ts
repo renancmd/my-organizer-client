@@ -7,7 +7,7 @@ async function createTask(name: string) {
         description: "",
         date: currentDate()
     };
-    create(task);
+    await create(task);
 }
 
 export { createTask };
