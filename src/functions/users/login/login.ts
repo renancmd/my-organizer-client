@@ -1,15 +1,19 @@
 import { loginUser } from "@/services/api/user/user";
 
-function login(email: string, password: string) {
-    loginUser({ email, password })
-        .then(response => {
-            if (response === "Login failed") {
-                return false;
-            } else {
-                localStorage.setItem("token", response);
-                window.location.href = "/";
-            }
-        });
+async function login(email: string, password: string): Promise<boolean> {
+  try {
+    const response = await loginUser({ email, password });
+
+    if (response === "Login failed") {
+      return false;
+    }
+
+    localStorage.setItem("token", response);
+    return true; // sucesso
+  } catch (error) {
+    console.error("Erro ao fazer login:", error);
+    return false;
+  }
 }
 
-export  {login };
+export { login };
