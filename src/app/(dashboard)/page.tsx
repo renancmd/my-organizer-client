@@ -61,8 +61,8 @@ export default function Home() {
             placeholder="Adicione uma tarefa"
             value={taskName}
             onchange={(e) => setTaskName(e.target.value)}
+            onPress={handleCreateTask}
           />
-          <Button name="Criar" onclick={handleCreateTask} />
         </div>
 
         {filterTasks(task, filter).map((task: any) => (

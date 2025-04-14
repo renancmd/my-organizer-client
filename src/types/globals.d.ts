@@ -12,6 +12,7 @@ declare global {
         onchange?: (e: any) => void;
         error?: boolean;
         errorMessage?: string;
+        onPress?: () => void;
     }
 
     interface TextLinkProps {
