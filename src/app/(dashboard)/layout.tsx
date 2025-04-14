@@ -5,7 +5,7 @@ export default function RootLayout({children,}: Readonly<{
     children: React.ReactNode;
 }>) {
     return (
-        <div lang="en" suppressHydrationWarning>
+        <div lang="pt-br" suppressHydrationWarning>
         <Navbar />
         {children}
         </div>

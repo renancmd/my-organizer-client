@@ -1,4 +1,5 @@
 "use client";
+import AuthGuard from "@/components/layout/AuthGuard";
 import Button from "@/components/ui/Button";
 import Form from "@/components/ui/Form";
 import Input from "@/components/ui/Input";
@@ -21,90 +22,95 @@ function Profile() {
 
   const [errors, setErrors] = useState({
     email: true,
-    name: true
+    name: true,
   });
 
   useEffect(() => {
-    showUserData().then(data => {
+    showUserData().then((data) => {
       setEmail(data.email);
       setName(data.name);
-    })
+    });
   }, []);
 
   const router = useRouter();
 
   return (
-    <div>
-      <div className="container-back">
-        <TextLink name="Voltar" href="/" />
-      </div>
-      <div className={`center ${styles.form}`}>
-        <Form>
-          <div className={`center ${styles.h1}`}>
-            <h1>Minha conta</h1>
-          </div>
-          <div className="center">
-            <ProfileImage />
-          </div>
-          <Input
-            type="text"
-            showLabel={true}
-            label="Email"
-            placeholder="Email"
-            disable={editUserData}
-            value={email}
-            onchange={(e) => setEmail(e.target.value)}
-            error={!errors.email}
-            errorMessage="Email Inválido"
-          />
-          <Input
-            type="text"
-            showLabel={true}
-            label="Nome"
-            placeholder="Nome"
-            value={name}
-            onchange={(e) => setName(e.target.value)}
-            disable={editUserData}
-            error={!errors.name}
-            errorMessage="Nome Inválido"
-          />
-          {editUserData ? (
+    <AuthGuard>
+      <div>
+        <div className="container-back">
+          <TextLink name="Voltar" href="/" />
+        </div>
+        <div className={`center ${styles.form}`}>
+          <Form>
+            <div className={`center ${styles.h1}`}>
+              <h1>Minha conta</h1>
+            </div>
+            <div className="center">
+              <ProfileImage />
+            </div>
+            <Input
+              type="text"
+              showLabel={true}
+              label="Email"
+              placeholder="Email"
+              disable={editUserData}
+              value={email}
+              onchange={(e) => setEmail(e.target.value)}
+              error={!errors.email}
+              errorMessage="Email Inválido"
+            />
+            <Input
+              type="text"
+              showLabel={true}
+              label="Nome"
+              placeholder="Nome"
+              value={name}
+              onchange={(e) => setName(e.target.value)}
+              disable={editUserData}
+              error={!errors.name}
+              errorMessage="Nome Inválido"
+            />
+            {editUserData ? (
+              <Button
+                name="Editar"
+                onclick={(e) => {
+                  setEditUserData(false);
+                }}
+              />
+            ) : (
+              <Button
+                name="Salvar"
+                onclick={(e) => {
+                  const result = updateUserData(email, name);
+                  if (result) {
+                    setErrors(result);
+                  }
+                }}
+              />
+            )}
             <Button
-              name="Editar"
+              name="Alterar senha"
+              onclick={() => router.push("/change-password")}
+            />
+            <Button name="Sair" onclick={() => logout()} />
+            <Button
+              name="Excluir minha conta"
               onclick={(e) => {
-                setEditUserData(false);
+                setIsModalOpen("remove-account");
               }}
             />
-          ) : (
-            <Button
-              name="Salvar"
-              onclick={(e) => {
-                const result = updateUserData(email, name);
-                if (result) {
-                  setErrors(result);
-                }
-              }}
+            <Modal
+              onClose={() => setIsModalOpen("")}
+              question="Tem certeza que deseja excluir sua conta? Confirme sua senha para realizar a exclusão."
+              isOpen={isModalOpen === "remove-account"}
+              cancelText="Cancelar"
+              confirmText="Excluir"
+              onCancel={() => setIsModalOpen("")}
             />
-          )}
-          <Button name="Alterar senha" onclick={() => router.push("/change-password")} />
-          <Button name="Sair" onclick={() => logout()} />
-          <Button
-            name="Excluir minha conta"
-            onclick={(e) => {
-              setIsModalOpen("remove-account");
-            }}
-          />
-          <Modal
-            onClose={() => setIsModalOpen("")}
-            question="Tem certeza que deseja excluir sua conta? Confirme sua senha para realizar a exclusão."
-            isOpen={isModalOpen === "remove-account"}
-            cancelText="Cancelar"
-            confirmText="Excluir"
-            onCancel={() => setIsModalOpen("")}
-          />
-        </Form>
+          </Form>
+        </div>
       </div>
-    </div>
+    </AuthGuard>
   );
 }
 

@@ -13,6 +13,7 @@ import { getTasks } from "@/functions/tasks/get-task";
 import { filterTasks } from "@/functions/tasks/filter-task";
 import { deleteTask } from "@/functions/tasks/delete-task";
 import { completeTask } from "@/functions/tasks/complete-task";
+import AuthGuard from "@/components/layout/AuthGuard";
 
 export default function Home() {
   const [openModal, setOpenModal] = useState(false);
@@ -43,7 +44,8 @@ export default function Home() {
   };
 
   return (
-    <div>
+    <AuthGuard>
+      <div>
       <ContainerToDo>
         <div className={`center flex ${styles.containerTab}`}>
           <TabButton title="Todos" onclick={() => setFilter("all")} />
@@ -105,5 +107,6 @@ export default function Home() {
         )}
       </ContainerToDo>
     </div>
+    </AuthGuard>
   );
 }
