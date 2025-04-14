@@ -31,4 +31,6 @@ interface ModalTaskProps {
 interface DatepickerProps {
   date?: string;
   onchange?: (e: any) => void;
+  onTodayClick?: () => void;
+  onTomorrowClick?: () => void;
 }

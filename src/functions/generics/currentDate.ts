@@ -1,18 +1,15 @@
-function currentDate() {
-    const date = new Date();
-    let day = date.getDate();
-    let month = date.getMonth() + 1;
-    const year = date.getFullYear();
+function formatDate(date: Date) {
+    return date.toISOString().split("T")[0];
+  }
+  
+  function currentDate() {
+    return formatDate(new Date());
+  }
+  
+  function tomorrowDate() {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    return formatDate(tomorrow);
+  }
 
-    if (day < 10) {
-        return `${year}-${month}-0${day}`;
-    } else if (month < 10) {
-        return `${year}-0${month}-${day}`;
-    } else if (day < 10 && month < 10) {
-        return `${year}-0${month}-0${day}`;
-    } else {
-        return `${year}-${month}-${day}`;
-    }
-}
-
-export { currentDate };
+  export { currentDate, tomorrowDate };

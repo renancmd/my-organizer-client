@@ -6,6 +6,7 @@ import Button from "@/components/ui/Button";
 import { updateTask } from "@/functions/tasks/update-task";
 import { useState } from "react";
 import { getTasks } from "@/functions/tasks/get-task";
+import { currentDate, tomorrowDate } from "@/functions/generics/currentDate";
 
 function ModalTask({ id, title, description, date, onclick }: ModalTaskProps) {
   const [taskName, setTaskName] = useState(title);
@@ -39,6 +40,8 @@ function ModalTask({ id, title, description, date, onclick }: ModalTaskProps) {
         <Datepicker
           date={taskDate}
           onchange={(e) => setTaskDate(e.target.value)}
+          onTodayClick={() => setTaskDate((currentDate())) }
+          onTomorrowClick={() => setTaskDate(tomorrowDate())}
         />
         <div className={styles.modalButton}>
           <Button

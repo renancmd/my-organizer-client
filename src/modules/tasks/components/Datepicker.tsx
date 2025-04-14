@@ -1,8 +1,6 @@
-"use client";
 import styles from "../styles/Datepicker.module.scss";
-import { currentDate } from "@/functions/generics/currentDate";
 
-function Datepicker({ date, onchange }: DatepickerProps) {
+function Datepicker({ date, onchange, onTodayClick, onTomorrowClick }: DatepickerProps) {
   return (
     <div className={styles.datepicker}>
       <input
@@ -15,15 +13,15 @@ function Datepicker({ date, onchange }: DatepickerProps) {
       <div className={styles.datepickerButtons}>
         <button
           className={styles.datepickerBtn}
-          onClick={() => null}
+          onClick={onTodayClick}
         >
-          Today
+          Hoje
         </button>
         <button
           className={styles.datepickerBtn}
-          onClick={() => null}
+          onClick={onTomorrowClick}
         >
-          Tomorrow
+          Amanhã
         </button>
       </div>
     </div>
