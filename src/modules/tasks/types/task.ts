@@ -15,8 +15,8 @@ export interface TaskProps {
   date: string;
   done: boolean;
   onclick: () => void;
-  oncomplete?: (e: any) => void;
-  ondelete?: (e: any) => void;
+  oncomplete?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  ondelete?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
 export interface ModalTaskProps {
@@ -29,7 +29,13 @@ export interface ModalTaskProps {
 
 export interface DatepickerProps {
   date?: string;
-  onchange?: (e: any) => void;
+  onchange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onTodayClick?: () => void;
   onTomorrowClick?: () => void;
+}
+
+export interface UpdateTaskProps {
+  name: string;
+  description?: string;
+  date: string;
 }

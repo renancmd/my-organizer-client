@@ -9,7 +9,7 @@ declare global {
         type: string;
         value?: string;
         disable?: boolean;
-        onchange?: (e: any) => void;
+        onchange?: (e) => void;
         error?: boolean;
         errorMessage?: string;
         onPress?: () => void;
@@ -22,7 +22,7 @@ declare global {
 
     interface ButtonProps {
         name: string;
-        onclick?: (e: any) => void;
+        onclick?: (e) => void;
     }
 
     interface ModalProps {

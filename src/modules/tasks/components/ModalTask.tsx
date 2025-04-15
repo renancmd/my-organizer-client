@@ -51,7 +51,7 @@ function ModalTask({ id, title, description, date, onclick }: ModalTaskProps) {
               updateTask(id, {
                 name: taskName,
                 description: taskDescription,
-                date: taskDate,
+                date: taskDate ?? "",
               });
               await getTasks();
               onclick?.();

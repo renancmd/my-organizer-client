@@ -1,7 +1,6 @@
 import { FaCheck } from "react-icons/fa6";
 import { FaRegTrashAlt } from "react-icons/fa";
 import styles from "../styles/Task.module.scss";
-import { deleteTask } from "@/functions/tasks/delete-task";
 import { TaskProps } from "../types/task";
 
 function Task ({ name, date, onclick, oncomplete, ondelete} : TaskProps) {

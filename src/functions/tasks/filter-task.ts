@@ -1,4 +1,6 @@
-export const filterTasks = (tasks: any[], filter: string) => {
+import { TaskProps } from "@/modules/tasks/types/task";
+
+export const filterTasks = (tasks: TaskProps[], filter: string) => {
     const today = normalizeDate(new Date());
     const tomorrow = new Date(today);
     tomorrow.setDate(today.getDate() + 1);

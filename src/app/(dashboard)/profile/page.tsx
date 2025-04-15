@@ -73,14 +73,14 @@ function Profile() {
             {editUserData ? (
               <Button
                 name="Editar"
-                onclick={(e) => {
+                onclick={() => {
                   setEditUserData(false);
                 }}
               />
             ) : (
               <Button
                 name="Salvar"
-                onclick={(e) => {
+                onclick={() => {
                   const result = updateUserData(email, name);
                   if (result) {
                     setErrors(result);
@@ -95,7 +95,7 @@ function Profile() {
             <Button name="Sair" onclick={() => logout()} />
             <Button
               name="Excluir minha conta"
-              onclick={(e) => {
+              onclick={() => {
                 setIsModalOpen("remove-account");
               }}
             />

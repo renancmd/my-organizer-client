@@ -7,19 +7,19 @@ import Task from "@/modules/tasks/components/Task";
 import Input from "@/components/ui/Input";
 import { useEffect, useState } from "react";
 import ModalTask from "@/modules/tasks/components/ModalTask";
-import Button from "@/components/ui/Button";
 import { createTask } from "@/functions/tasks/create-task";
 import { getTasks } from "@/functions/tasks/get-task";
 import { filterTasks } from "@/functions/tasks/filter-task";
 import { deleteTask } from "@/functions/tasks/delete-task";
 import { completeTask } from "@/functions/tasks/complete-task";
 import AuthGuard from "@/components/layout/AuthGuard";
+import { TaskProps } from "@/modules/tasks/types/task";
 
 export default function Home() {
   const [openModal, setOpenModal] = useState(false);
   const [taskName, setTaskName] = useState("");
-  const [task, setTask] = useState<Array<any>>([]);
-  const [selectedTask, setSelectedTask] = useState<any>(null);
+  const [task, setTask] = useState<Array<TaskProps>>([]);
+  const [selectedTask, setSelectedTask] = useState<TaskProps | null>(null);
   const [filter, setFilter] = useState("all");
 
   const loadTasks = async () => {
@@ -67,7 +67,7 @@ export default function Home() {
           />
         </div>
 
-        {filterTasks(task, filter).map((task: any) => (
+        {filterTasks(task, filter).map((task: TaskProps) => (
           <Task
             key={task.id}
             id={task.id}

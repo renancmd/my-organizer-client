@@ -1,6 +1,5 @@
 import { IoIosClose } from "react-icons/io";
 import styles from "../../styles/ui/Modal.module.scss";
-import Button from "./Button";
 import Input from "./Input";
 import { useState } from "react";
 import { deleteUserData } from "@/functions/users/delete/delete";
@@ -13,9 +12,9 @@ export const Modal = ({
   cancelText = "Cancel",
   onCancel,
 }: ModalProps) => {
-  if (!isOpen) return null;
-
   const [password, setPassword] = useState<string>("");
+
+  if (!isOpen) return null;
 
   return (
     <div className={styles.overlay}>

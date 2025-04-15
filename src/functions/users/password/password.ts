@@ -27,7 +27,7 @@ function changePassword(
       errorMessage: "As senhas não conferem",
     };
   } else {
-    changeUserPassword({ oldPassword, newPassword }).then((resp) => {
+    changeUserPassword({ oldPassword, newPassword }).then(() => {
       logout();
     });
   }
