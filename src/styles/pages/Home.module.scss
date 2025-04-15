@@ -1,8 +1,20 @@
 .containerTab {
-    margin-bottom: 10px;
+    margin-bottom: 10px;    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
 }
 
 .containerInput {
     display: flex;
+    flex-direction: column;
     gap: 1rem;
+    align-items: stretch;
+}
+
+@media (min-width: 768px) {
+    .containerInput {
+        flex-direction: row;
+        align-items: center;
+    }
 }

@@ -6,31 +6,61 @@
     padding: 1rem 2rem;
     border-bottom: 2px solid var(--border-color);
     font-weight: 500;
-  }
-  
-  .navbarLogo {
+    position: relative;
+    flex-wrap: wrap;
+}
+
+.navbarLogo {
     font-size: 1.5rem;
     color: var(--text-color);
-  }
-  
-  .navbarLinks {
+    flex-shrink: 0;
+}
+
+.navbarLinks {
     display: flex;
     gap: 2rem;
     list-style: none;
     align-items: center;
     margin-right: 20px;
-  }
-  
-  @media (max-width: 768px) {
+    flex-grow: 1;
+    justify-content: flex-end;
+}
+
+.menuButton {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 0.5rem;
+    flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+    .menuButton {
+        display: block;
+    }
+
     .navbar {
-      flex-direction: column;
-      align-items: flex-start;
+        flex-wrap: nowrap;
     }
-  
+
     .navbarLinks {
-      flex-direction: column;
-      gap: 1rem;
-      margin-top: 1rem;
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background-color: var(--background-color);
+        padding: 1rem;
+        gap: 1rem;
+        border-bottom: 2px solid var(--border-color);
+        margin: 0;
+        z-index: 100;
+
+        &.isOpen {
+            display: flex;
+        }
     }
-  }
-  
+}
