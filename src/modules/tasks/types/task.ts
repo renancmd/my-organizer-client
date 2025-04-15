@@ -1,15 +1,14 @@
-// export { ContainerToDoProps };
-
-interface ContainerToDoProps {
+// Exportando cada interface individualmente
+export interface ContainerToDoProps {
   children: React.ReactNode;
 }
 
-interface TabButtonProps {
+export interface TabButtonProps {
   title: string;
   onclick?: () => void;
 }
 
-interface TaskProps {
+export interface TaskProps {
   id: string;
   name: string;
   description?: string;
@@ -20,7 +19,7 @@ interface TaskProps {
   ondelete?: (e: any) => void;
 }
 
-interface ModalTaskProps {
+export interface ModalTaskProps {
   id: string;
   title: string;
   description?: string;
@@ -28,7 +27,7 @@ interface ModalTaskProps {
   onclick?: () => void;
 }
 
-interface DatepickerProps {
+export interface DatepickerProps {
   date?: string;
   onchange?: (e: any) => void;
   onTodayClick?: () => void;

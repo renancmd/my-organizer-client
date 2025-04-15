@@ -1,4 +1,5 @@
 import styles from "../styles/TabButton.module.scss";
+import { TabButtonProps } from "../types/task";
 
 function TabButton({title, onclick}: TabButtonProps) {
     return (

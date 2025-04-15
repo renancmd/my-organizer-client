@@ -7,6 +7,7 @@ import { updateTask } from "@/functions/tasks/update-task";
 import { useState } from "react";
 import { getTasks } from "@/functions/tasks/get-task";
 import { currentDate, tomorrowDate } from "@/functions/generics/currentDate";
+import { ModalTaskProps } from "../types/task";
 
 function ModalTask({ id, title, description, date, onclick }: ModalTaskProps) {
   const [taskName, setTaskName] = useState(title);

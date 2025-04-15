@@ -1,4 +1,5 @@
 import styles from "../styles/Datepicker.module.scss";
+import { DatepickerProps } from "../types/task";
 
 function Datepicker({ date, onchange, onTodayClick, onTomorrowClick }: DatepickerProps) {
   return (

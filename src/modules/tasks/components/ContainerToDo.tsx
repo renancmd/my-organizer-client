@@ -1,4 +1,5 @@
 import styles from "../styles/ContainerToDo.module.scss";
+import { ContainerToDoProps } from "../types/task";
 
 function ContainerToDo({ children }: ContainerToDoProps) {
     return (
