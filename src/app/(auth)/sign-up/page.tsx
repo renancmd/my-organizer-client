@@ -8,7 +8,7 @@ import Logo from "@/components/ui/Logo";
 import { useState } from "react";
 import { register } from "@/functions/users/register/register";
 
-function signUp() {
+function SignUp() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -85,4 +85,4 @@ function signUp() {
   );
 }
 
-export default signUp;
+export default SignUp;
