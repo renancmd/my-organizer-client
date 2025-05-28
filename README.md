@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🗂️ My Organizer (Front-end)
 
-## Getting Started
+## 📝 Descrição
 
-First, run the development server:
+**My Organizer** é uma aplicação do tipo **To-Do List** focada no minimalismo. Permite ao usuário cadastrar tarefas com **nome**, **descrição** e **data**, organizando seu dia de forma simples e funcional.
+
+Este repositório contém exclusivamente o código do **front-end**, desenvolvido com Next.js + TypeScript.
+
+> ⚠️ Para que a aplicação funcione corretamente, é necessário clonar e executar também o [repositório do back-end](https://github.com/renancmd/my-organizer-server/tree/main).
+
+---
+
+## 💻 Tecnologias Utilizadas
+
+- [Next.js](https://nextjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [SCSS](https://sass-lang.com/)
+- [Axios](https://axios-http.com/) – utilizado para comunicação com a API REST
+
+---
+
+## 🚀 Como Executar
+
+### Pré-requisitos
+
+- Node.js 18+
+
+### Passos
 
 ```bash
+# Clone o repositório
+git clone https://github.com/renancmd/my-organizer-client.git
+cd my-organizer-frontend
+
+# Instale as dependências
+npm install
+
+# Inicie o servidor de desenvolvimento
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+> A aplicação será acessível em `http://localhost:3000`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🔗 Integração com a API
 
-## Learn More
+Este front-end se comunica com o back-end via **requisições HTTP usando Axios**. Certifique-se de que a API (Spring Boot) esteja em execução localmente ou no ambiente correto, conforme configurado.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🚧 Status do Projeto
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+✅ Finalizado, mas com planos de aprimoramento futuro.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📈 Melhorias Futuras
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Adicionar responsividade aprimorada
+- Melhorar mensagens de erro
+
+---
+
+## 📄 Licença
+
+Este projeto está licenciado sob a **Licença MIT**.
